@@ -3,8 +3,9 @@ exports.checkUserMiddle = (req, res, next) => {
   if (username == "Imran" && password == "admin") {
     req.message =
       "user is authenticated, you can now access the cart data from database";
+    req.username = username;
     next();
   } else {
-    res.status(401).send("Unauthorized");
+    res.status(401).render("failure",{username});
   }
 };
