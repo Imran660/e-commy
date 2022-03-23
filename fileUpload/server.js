@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 function checkFileType(file, cb) {
   // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
+  const filetypes = /jpeg|jpg|gif/;
   // Check ext
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
@@ -28,7 +28,7 @@ function checkFileType(file, cb) {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb("Error: Images Only!");
+    cb("Error: Images Only! or check the type of image");
   }
 }
 
@@ -52,19 +52,11 @@ app.get("/", (req, res) => {
 
 app.post("/upload", imageUpload.single("image"), (req, res) => {
   res.status(201).send(req.file);
-  //   upload(req, res, (err) => {
-  //     if (err) {
-  //       res.status(400).send(err);
-  //     } else {
-  //       if (req.file == undefined) {
-  //         res.status(400).send("Error: No File Selected!");
-  //       } else {
-  //         res.status(201).send(req.file);
-  //       }
-  //     }
-  //   });
 });
 
+app.post("/uploadBulkImage", imageUpload.array("images", 4), (req, res) => {
+  res.status(201).send(req.files);
+});
 //app listen
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
