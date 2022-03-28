@@ -35,20 +35,48 @@ const handleFetchData = (data) => {
 
 //handling future responses using async/await mechanism
 
-const result = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(data);
-  }, 2000);
-});
+// const result = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve(data);
+//   }, 2000);
+// });
 
-//synchronous code where we have used await keyword to wait ourself for the data to be available
-async function fetchData() {
-  try {
-    const data = await result; //waitig for the promise to resolve or in simple way waited for the data to be arrived
-    console.log(data.length);
-  } catch (err) {
-    console.log(err);
-  }
-}
+// //synchronous code where we have used await keyword to wait ourself for the data to be available
+// async function fetchData() {
+//   try {
+//     const data = await result; //waitig for the promise to resolve or in simple way waited for the data to be arrived
+//     console.log(data.length);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
-fetchData();
+// fetchData();
+
+
+// const async = require("async");
+
+// const stack = [];
+
+// function printFirstLine(callback) {
+//   callback(null, "First line");
+// }
+
+// function printSecondLine(callback) {
+//   callback(null, "Second line");
+// }
+
+// function printThirdLine(callback) {
+//   callback("error in printing third line");
+// }
+
+// stack.push(printFirstLine);
+// stack.push(printSecondLine);
+// stack.push(printThirdLine);
+
+// async.parallel(stack, (err, result) => {
+//   if (err) {
+//     console.log(err)
+//   }
+//   console.log(result)
+//   });
